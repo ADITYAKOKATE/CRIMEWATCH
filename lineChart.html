@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Line Chart</title>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <select id="select_district"></select>
+    <div id="my_dataviz"></div>
+</body>
+</html>
+
+<script>
+    // Set the dimensions and margins of the graph
+    const margin = {top: 10, right: 10, bottom: 30, left: 30},
+        width = 460 - margin.left - margin.right,
+        height = 500 - margin.top - margin.bottom;
+
+    // Append the svg object to the body of the page
+    const svg = d3.select("#my_dataviz")
+    .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+        .attr("transform", `translate(${margin.left},${margin.top})`);
+
+    //Read the data
+    d3.csv("year_cnt.csv").then( function(data) {
+        console.log(data);
+        cat_col = data.map(d => d['category']);
+        console.log(cat_col);
+        // List of groups (here I have one group per column)
+        const districts = ['松山區', '信義區', '大安區', '中山區', '中正區', '大同區', '萬華區', '文山區', '南港區', '內湖區', '士林區', '北投區'];
+
+        // District's select dropdown
+        d3.select("#select_district")
+            .selectAll('myOptions')
+                .data(districts)
+            .enter()
+                .append('option')
+            .text(function (d) { return d; }) // text showed in the menu
+            .attr("value", function (d) { return d; }) // corresponding value returned by the button
+
+        const cat = ['burglary', 'car theft', 'motorcycle theft', 'bike theft'];
+        // Color for each group
+        const myColor = d3.scaleOrdinal()
+            .domain(cat)
+            .range(d3.schemeSet2);
+
+        // Add X axis
+        const x = d3.scaleLinear()
+            .domain([106,112])
+            .range([ 0, width ]);
+        svg.append("g")
+            .attr("transform", `translate(0, ${height-100})`)
+            .call(d3.axisBottom(x).ticks(5));
+
+        // Add Y axis
+        const y = d3.scaleLinear()
+            .domain([0,130])
+            .range([ height-100, 0 ]);
+        svg.append("g")
+            .call(d3.axisLeft(y));
+
+        // Add X axis label:
+        svg.append("text")
+            .attr("text-anchor", "end")
+            .attr("x", width/2 + margin.left)
+            .attr("y", height + margin.top - 55)
+            .text("Year")
+            .style("font-size", "25px");
+
+        // Initialize line with 松山區
+        var cur_col = data.map(d => d['松山區']);
+        console.log(cur_col.slice(0,5));
+        var line = [];
+        for (var i = 0; i < 4; i++) {
+            line[i] = svg
+                .append('g')
+                .append("path")
+                    .datum(cur_col.slice(0+i*5, 5+i*5))
+                    .attr("d", d3.line()
+                        .x(function(d,j) { return x(j+107); })
+                        .y(function(d) { return y(+d); })
+                    )
+                    .attr("stroke", myColor(cat[i]))
+                    .style("stroke-width", 3)
+                    .style("fill", "none")
+
+            // Handmade legend
+            svg.append("rect").attr("x", 305).attr("y", 10+20*i).attr("width", 10).attr("height", 10).style("fill", myColor(cat[i]));
+            svg.append("text").attr("x", 320).attr("y", 15+20*i).text(cat[i]).style("font-size", "15px").attr("alignment-baseline","middle");
+        }
+
+        // A function that update the chart
+        function update(selectedDistrict) {
+            // Create new data with the selection
+            var new_col = data.map(d => d[selectedDistrict]);
+            console.log(new_col.slice(0,5));
+
+            for (var i = 0; i < 4; i++) {
+            // Give these new data to update line
+            line[i]
+                .datum(new_col.slice(0+i*5, 5+i*5))
+                .transition()
+                .duration(800)
+                .attr("d", d3.line()
+                    .x(function(d,j) { return x(j+107); })
+                    .y(function(d) { return y(+d); })
+                )
+                .attr("stroke", myColor(cat[i]))
+            }
+        }
+
+        // When the button is changed, run the updateChart function
+        d3.select("#select_district").on("change", function(event,d) {
+            // recover the option that has been chosen
+            const selectedOption = d3.select(this).property("value");
+            // run the update function with this selected option
+            update(selectedOption);
+        })
+
+    })
+</script>

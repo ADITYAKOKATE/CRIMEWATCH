@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Public Safety Report</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link rel="stylesheet" href="first.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/ac42c3b1f7.js" crossorigin="anonymous"></script>
+    <!-- For icons -->
+    <style>
+        body {
+            background-image: url("https://kanepublicsafety.com/wp-content/uploads/2021/03/16-9-KPS-Background-06.jpg");
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-control {
+            border-radius: 10px;
+        }
+
+        .btn-dark {
+            border-radius: 10px;
+        }
+
+        .btn-primary {
+            border-radius: 10px;
+        }
+
+        .card-footer {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 0 0 15px 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="section1">
+        <div class="" container>
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card2">
+                        <div class="card-body">
+                            <h3 class="text-center h6 mb-4">Emergency Services</h3>
+                            <p class="p">Get in contact with them as per your area</p>
+                            <form action="report" method="POST">
+                                <div class="form-group">
+                                    <select class="form-control" id="city" name="city" required
+                                        onchange="redirectToCity()">
+                                        <option value="" disabled selected>Select City</option>
+                                        <option value="Delhi">Delhi</option>
+                                        <option value="Mumbai">Mumbai</option>
+                                        <option value="NaviMumbai">Navi Mumbai</option>
+                                        <option value="Chennai">Chennai</option>
+                                        <option value="Bengaluru">Bengaluru</option>
+                                        <option value="Hyderabad">Hyderabad</option>
+                                        <option value="Pune">Pune</option>
+                                        <option value="Ahemdabad">Ahmdabad</option>
+                                        <option value="Jaipur">Jaipur</option>
+                                        <option value="Lucknow">Lucknow</option>
+                                        <option value="Surat">Surat</option>
+                                        <option value="Kanpur">Kanpur</option>
+                                        <option value="Nagupur">Nagupur</option>
+                                        <option value="Patna">Patna</option>
+                                        <option value="Thane">Thane</option>
+                                        <option value="Bhopal">Bhopal</option>
+                                        <option value="Agra">Agra</option>
+                                        <option value="Nashik">Nashik</option>
+                                        <option value="Rajkot">Rajkot</option>
+                                        <option value="Varnasi">Varnasi</option>
+                                        <option value="Amritsar">Amritsar</option>
+                                        <option value="Aurangabad">Aurangabad</option>
+                                        <!-- Add other cities here -->
+                                    </select>
+                                </div>
+                            </form>
+
+                            <script>
+                                function redirectToCity() {
+                                    var selectBox = document.getElementById("city");
+                                    var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+
+                                    // Define the IDs of the modals for each city
+                                    var cityModals = {
+                                        "Delhi": "delhiModal",
+                                        "Mumbai": "mumbaiModal",
+                                        "Chennai": "chennai-section",
+                                        "Bengaluru": "bengaluru-section",
+                                        "Hyderabad": "hyderabad-section",
+                                        "Pune": "pune-section",
+                                        "Ahmpdabad": "ahmdabad-section",
+                                        "Jaipur": "jaipur-section",
+                                        "Lucknow": "lucknow-section",
+                                        "Surat": "surat-section",
+                                        "Kanpur": "kanpur-section",
+                                        "Nagupur": "nagupur-section",
+                                        "Patna": "patna-section",
+                                        "Thane": "thane-section",
+                                        "Bhopal": "bhopal-section",
+                                        "Agra": "agra-section",
+                                        "Nashik": "nashik-section",
+                                        "Rajkot": "rajkot-section",
+                                        "NaviMumbai": "nvsection",
+                                        "Varnasi": "varnasi-section",
+                                        "Amritsar": "amritsar-section",
+                                        "Aurangabad": "aurangabad-section",
+                                        // Add other cities and their modal IDs here
+                                    };
+
+                                    // Open the modal based on the selected city
+                                    var modalID = cityModals[selectedValue];
+                                    if (modalID) {
+                                        $('#' + modalID).modal('show');
+                                    }
+                                }
+                            </script>
+
+                        </div>
+                        <div class="card-footer text-center">
+                            <small><a class="btn btn-info" href="main3.html">Home</a></small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<div>
+    <!-- Delhi Modal -->
+    <div class="modal fade" id="delhiModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog mt-5">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title thanking-customers-section-modal-title" id="exampleModalLabel">
+                        Emergency Contact Details
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <p>
+                            <span class="a2">Disaster Helpline :</span> 1077<br />
+                            <span class="a2">Women Helpline :</span> 1091<br />
+                            <span class="a2">Child Helpline :</span> 1098<br />
+                            <span class="a2">Doorstep delivery :</span> 1076<br />
+                            <span class="a2">Police :</span> 100<br />
+                            <span class="a2">Fire & Rescue :</span> 101<br />
+                            <span class="a2">Ambulance :</span> 102<br />
+                            <span class="a2">NGMS :</span> 155271<br />
+                            <span class="a2">COVID Helpline Toll Free :</span> 1075<br />
+                            <span class="a2">COVID Helpline Delhi :</span> 011-22307145<br />
+                        </p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Mumbai Modal -->
+    <div class="modal fade" id="mumbaiModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog mt-5">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title thanking-customers-section-modal-title" id="exampleModalLabel">
+                        Emergency Contact Details
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <p>
+                            <span class="a2">Citizens Call Centre :</span> 155300<br />
+                            <span class="a2">Child Helpline :</span> 1098<br />
+                            <span class="a2">Women Helpline :</span> 1091<br />
+                            <span class="a2">Crime Stopper :</span> 1090<br />
+                            <span class="a2">Rescue and Relief :</span> 1070<br />
+                            <span class="a2">Ambulance :</span> 102, 108<br />
+                            <span class="a2">Police Helpline :</span> 100<br />
+                            <span class="a2">Railway Helpline :</span> 23004000<br />
+                            <span class="a2">NIC Service Desk :</span> 1800-111-555<br />
+                          </p>
+                          
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="chennai-section" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog mt-5">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title thanking-customers-section-modal-title" id="exampleModalLabel">
+                        Emergency Contact Details
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <p>
+                            <span class="a2">Police :</span> 100<br />
+                            <span class="a2">Fire Control :</span> 101<br />
+                            <span class="a2">Ambulance of Fire Service Dept. :</span> 102<br />
+                            <span class="a2">Traffic Police :</span> 103<br />
+                            <span class="a2">Accident Helpline :</span> 108<br />
+                            <span class="a2">Disaster Helpline :</span> 1077<br />
+                            <span class="a2">Child Helpline :</span> 1098<br />
+                            <span class="a2">Women Helpline :</span> 181<br />
+                          </p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="bengaluru-section" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog mt-5">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title thanking-customers-section-modal-title" id="exampleModalLabel">
+                        Emergency Contact Details
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <p>
+                            <span class="a2">Police :</span> 100<br />
+                            <span class="a2">Women’s Safety :</span> 1091<br />
+                            <span class="a2">Senior Citizens :</span> 1090<br />
+                            <span class="a2">Ambulance :</span> 105711 / 1062 / 108<br />
+                            <span class="a2">Traffic Helpline :</span> 1095 / +91-80-2294-3030 / 131<br />
+                            <span class="a2">Harassed by Auto Drivers :</span> +91-80-2558-8444 / 555<br />
+                            <span class="a2">Suicide Prevention SAHAI :</span> +91-80-2549-7777<br />
+                            <span class="a2">Fire Service Control Room :</span> +91-80-2297-1500<br />
+                          </p>
+                          
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="hyderabad-section" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog mt-5">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title thanking-customers-section-modal-title" id="exampleModalLabel">
+                        Emergency Contact Details
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <p>
+                            <span class="a2">State Control Room :</span> 1070<br />
+                            <span class="a2">Collectorate :</span> 040-23202113<br />
+                            <span class="a2">Police Control Room :</span> 100<br />
+                            <span class="a2">Accident Help Line :</span> 108<br />
+                            <span class="a2">Fire and Rescue :</span> 101<br />
+                            <span class="a2">Ambulance Help Line :</span> 102<br />
+                            <span class="a2">Child Help Line :</span> 1098<br />
+                            <span class="a2">Disaster Help Line :</span> 1077<br />
+                            <span class="a2">Sexual Harassment :</span> 1091<br />
+                            <span class="a2">BSNL Help Line :</span> 1500<br />
+                          </p>
+                          
+                          
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="pune-section" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog mt-5">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title thanking-customers-section-modal-title" id="exampleModalLabel">
+                        Emergency Contact Details
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <p>
+                            <span class="a2">Election :</span> 1950<br />
+                            <span class="a2">Police :</span> 100<br />
+                            <span class="a2">Ambulance :</span> 108<br />
+                            <span class="a2">Fire Brigade :</span> 104<br />
+                            <span class="a2">Pune Municipal Corporation :</span> 1800-1030-222<br />
+                            <span class="a2">Disaster Management Control Room :</span> 1077<br />
+                            <span class="a2">Child Helpline :</span> 1098<br />
+                            <span class="a2">Women Helpline :</span> 1091<br />
+                            <span class="a2">NIC Service Desk :</span> 1800-111-555<br />
+                            <span class="a2">Coronavirus Central Helpline :</span> 011-23978043/46<br />
+                            <span class="a2">Coronavirus Maharashtra Helpline :</span> 020-26127394<br />
+                          </p>
+                          
+                          
+                          
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="ahmdabad-section" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog mt-5">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title thanking-customers-section-modal-title" id="exampleModalLabel">
+                        Emergency Contact Details
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <p>
+                            <span class="a2">Citizen’s Call Center Helpline :</span> 155303<br />
+                            <span class="a2">Child Helpline :</span> 1098<br />
+                            <span class="a2">Women Helpline :</span> 181<br />
+                            <span class="a2">Crime Stopper Helpline :</span> 1090<br />
+                            <span class="a2">Rescue & Relief Helpline :</span> 1070<br />
+                            <span class="a2">Ambulance Helpline :</span> 108, 102<br />
+                            <span class="a2">District Helpline :</span> +91 79 1077<br />
+                            <span class="a2">District EOCs Helpline NO :</span> +91 79 27560511<br />
+                          </p>
+                          
+                          
+                          
+                          
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="jaipur-section" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog mt-5">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title thanking-customers-section-modal-title" id="exampleModalLabel">
+                        Emergency Contact Details
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <p>
+                            <span class="a2">Police :</span> 100, 0141-2619725<br />
+                            <span class="a2">Fire :</span> 101<br />
+                            <span class="a2">Ambulance :</span> 108 / 102<br />
+                            <span class="a2">Centralized Helpline Number :</span> 112<br />
+                            <span class="a2">AIDS Helpline :</span> 1097<br />
+                            <span class="a2">Crime Police :</span> 1090<br />
+                            <span class="a2">AVVNL(Electricity) Helpline :</span> 18001806565<br />
+                            <span class="a2">Water Supply Helpline :</span> 8094800888<br />
+                          </p>
+                          
+                          
+                          
+                          
+                          
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="lucknow-section" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog mt-5">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title thanking-customers-section-modal-title" id="exampleModalLabel">
+                        Emergency Contact Details
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <p>
+                            <span class="a2">Police :</span> 112<br />
+                            <span class="a2">Fire :</span> 101<br />
+                            <span class="a2">Ambulance :</span> 102 / 108<br />
+                            <span class="a2">Women Helpline :</span> 1090<br />
+                            <span class="a2">Citizen's Call Center :</span> 155300<br />
+                            <span class="a2">Child Helpline :</span> 1098<br />
+                            <span class="a2">Chief Minister Helpline :</span> 1076<br />
+                            <span class="a2">UP Women Commission Helpline :</span> 1800-180-5220<br />
+                          </p>
+                          
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="surat-section" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog mt-5">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title thanking-customers-section-modal-title" id="exampleModalLabel">
+                        Emergency Contact Details
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <p>
+                            <span class="a2">Emergencies District Helpline :</span> +912612663200 / 1077<br />
+                            <span class="a2">District EOCs Helpline :</span> +912612663200<br />
+                            <span class="a2">Woman Helpline :</span> 1091<br />
+                            <span class="a2">Child Helpline :</span> 1098<br />
+                            <span class="a2">Ambulance Helpline :</span> 108<br />
+                            <span class="a2">Fire & Rescue :</span> 101<br />
+                            <span class="a2">Commissioner of Rescue & Relief :</span> 1070<br />
+                          </p>
+                          
+                          
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="kanpur-section" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog mt-5">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title thanking-customers-section-modal-title" id="exampleModalLabel">
+                        Emergency Contact Details
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <p>
+                            <span class="a2">Police :</span> 100<br />
+                            <span class="a2">Fire Control :</span> 101<br />
+                            <span class="a2">Ambulance :</span> 102 / 108<br />
+                            <span class="a2">District Helpline :</span> +91 512 1077<br />
+                            <span class="a2">District EOCs Helpline :</span> +91 512 1077<br />
+                          </p>
+                          
+                          
+                          
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="nagupur-section" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog mt-5">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title thanking-customers-section-modal-title" id="exampleModalLabel">
+                        Emergency Contact Details
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <p>
+                            <span class="a2">Citizen's Call Center :</span> 155300<br />
+                            <span class="a2">Child Helpline :</span> 1098<br />
+                            <span class="a2">Women Helpline :</span> 1091<br />
+                            <span class="a2">Crime Branch :</span> 0712-2566766<br />
+                            <span class="a2">NIC Service Desk :</span> 1800-111-555<br />
+                            <span class="a2">Ambulance :</span> 102 / 108<br />
+                            <span class="a2">PDS Helpline :</span> 1800-22-4950<br />
+                            <span class="a2">Social Service Branch (SSB) :</span> 0712-2566628<br />
+                        </p>
+                        
+                          
+                          
+                          
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="patna-section" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog mt-5">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title thanking-customers-section-modal-title" id="exampleModalLabel">
+                        Emergency Contact Details
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <p>
+                            <span class="a2">Police :</span> 100<br />
+                            <span class="a2">Fire Control :</span> 101<br />
+                            <span class="a2">Ambulance :</span> 102<br />
+                            <span class="a2">District Helpline :</span> +91 612 1077<br />
+                            <span class="a2">District EOCs Helpline :</span> +91 612 1077<br />
+                        </p>
+                        
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="thane-section" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog mt-5">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title thanking-customers-section-modal-title" id="exampleModalLabel">
+                        Emergency Contact Details
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <p>
+                            <span class="a2">PDS Helpline :</span> 1800-22-4950 / 1967<br />
+                            <span class="a2">Child Helpline :</span> 1098<br />
+                            <span class="a2">Women Helpline :</span> 1091<br />
+                            <span class="a2">Crime Stopper :</span> 1090<br />
+                            <span class="a2">Rescue & Relief :</span> 1070<br />
+                            <span class="a2">Ambulance :</span> 102, 108<br />
+                            <span class="a2">Police Control Room :</span> 100<br />
+                            <span class="a2">Fire :</span> 101<br />
+                        </p>
+                        
+                        
+                          
+                          
+                          
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="bhopal-section" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog mt-5">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title thanking-customers-section-modal-title" id="exampleModalLabel">
+                        Emergency Contact Details
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <p>
+                            <span class="a2">CM Helpline :</span> 181<br />
+                            <span class="a2">Child Helpline :</span> 1098<br />
+                            <span class="a2">Police Helpline (DIAL100) :</span> 100<br />
+                            <span class="a2">Fire Emergency :</span> 101<br />
+                            <span class="a2">Ambulance :</span> 108<br />
+                            <span class="a2">Women Helpline :</span> 1090<br />
+                            <span class="a2">Voter Helpline :</span> 1950<br />
+                        </p>
+                        
+                        
+                        
+                          
+                          
+                          
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="agra-section" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog mt-5">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title thanking-customers-section-modal-title" id="exampleModalLabel">
+                        Emergency Contact Details
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <p>
+                            <span class="a2">CM Helpline :</span> 1076<br />
+                            <span class="a2">UP 112 (Police) :</span> 112<br />
+                            <span class="a2">Fire :</span> 101<br />
+                            <span class="a2">UP Ambulance Service :</span> 108<br />
+                            <span class="a2">Child Helpline :</span> 1098<br />
+                            <span class="a2">Women Helpline :</span> 1090<br />
+                            <span class="a2">Call ambulance for pregnant ladies :</span> 102<br />
+                            <span class="a2">Relief Helpline :</span> 1070<br />
+                        </p>
+                        
+                        
+                        
+                        
+                          
+                          
+                          
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="nashik-section" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog mt-5">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title thanking-customers-section-modal-title" id="exampleModalLabel">
+                        Emergency Contact Details
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <p>
+                            <span class="a2">Ambulance :</span> 102, 108<br />
+                            <span class="a2">NIC Service Desk :</span> 1800111555<br />
+                            <span class="a2">Citizen’s Call center :</span> 155300<br />
+                            <span class="a2">Child Helpline :</span> 1098<br />
+                            <span class="a2">Women Helpline :</span> 1091<br />
+                        </p>
+                        
+                        
+                        
+                        
+                        
+                          
+                          
+                          
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="rajkot-section" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog mt-5">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title thanking-customers-section-modal-title" id="exampleModalLabel">
+                        Emergency Contact Details
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <p>
+                            <span class="a2">District Helpline :</span> +91 281 1077<br />
+                            <span class="a2">District EOCs Helpline No. :</span> +91 281 1077<br />
+                            <span class="a2">Commissioner of Rescue Relief :</span> 1070<br />
+                            <span class="a2">Woman Helpline :</span> 1091<br />
+                            <span class="a2">Child Helpline :</span> 1098<br />
+                            <span class="a2">Fire & Rescue :</span> 101<br />
+                            <span class="a2">Police :</span> 100<br />
+                            <span class="a2">Ambulance :</span> 102<br />
+                        </p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="nvsection" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog mt-5">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title thanking-customers-section-modal-title" id="exampleModalLabel">
+                        Emergency Contact Details
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <p>
+                            <span class="a2">Centralized Helpline :</span> 112<br />
+                            <span class="a2">Police :</span> 100, 022-27574928, 27561099<br />
+                            <span class="a2">Fire :</span> 101, 022-27660101<br />
+                            <span class="a2">Ambulance :</span> 102<br />
+                            <span class="a2">Women Helpline :</span> 7738133133, 103<br />
+                            <span class="a2">Blood Bank :</span> 104, 1910<br />
+                            <span class="a2">Disaster Helpline :</span> 022-22694725<br />
+                            <span class="a2">Traffic Police :</span> 7738393839<br />
+                            <span class="a2">AIDS Helpline :</span> 1097<br />
+                            <span class="a2">Anti-Poison (Delhi) :</span> 1066<br />
+                            <span class="a2">Infoline :</span> 1090<br />
+                        </p>
+                        
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="varnasi-section" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog mt-5">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title thanking-customers-section-modal-title" id="exampleModalLabel">
+                        Emergency Contact Details
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <p>
+                            <span class="a2">Centralized Helpline :</span> 112<br />
+                            <span class="a2">Police :</span> 100<br />
+                            <span class="a2">Fire :</span> 101<br />
+                            <span class="a2">Ambulance :</span> 102<br />
+                            <span class="a2">Women Helpline :</span> 1090<br />
+                            <span class="a2">Blood Bank :</span> 104<br />
+                            <span class="a2">Disaster Helpline :</span> 1077<br />
+                            <span class="a2">Traffic Police :</span> 1099<br />
+                            <span class="a2">AIDS Helpline :</span> 1097<br />
+                            <span class="a2">Anti-Poison (Delhi) :</span> 1066<br />
+                            <span class="a2">Infoline :</span> 1090<br />
+                        </p>
+                        
+                        
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="amritsar-section" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog mt-5">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title thanking-customers-section-modal-title" id="exampleModalLabel">
+                        Emergency Contact Details
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <p>
+                            <span class="a2">Centralized Helpline :</span> 112<br />
+                            <span class="a2">Police :</span> 100<br />
+                            <span class="a2">Fire :</span> 101<br />
+                            <span class="a2">Ambulance :</span> 102<br />
+                            <span class="a2">Women Helpline :</span> 1091<br />
+                            <span class="a2">Child Helpline :</span> 1098<br />
+                            <span class="a2">Chief Minister Helpline :</span> 1076<br />
+                            <span class="a2">UP Women Commission Helpline :</span> 1800-180-5220<br />
+                        </p>
+                        
+                        
+                        
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="aurangabad-section" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog mt-5">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title thanking-customers-section-modal-title" id="exampleModalLabel">
+                        Emergency Contact Details
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <p>
+                            <span class="a2">Police :</span> 100<br />
+                            <span class="a2">Fire Control :</span> 101<br />
+                            <span class="a2">Ambulance :</span> 102<br />
+                            <span class="a2">District Helpline :</span> +91 512 1077<br />
+                            <span class="a2">District EOCs Helpline :</span> +91 512 1077<br />
+                        </p>
+                        
+                        
+                        
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <script type="text/javascript"
+        src="https://d1tgh8fmlzexmh.cloudfront.net/ccbp-static-website/js/ccbp-ui-kit.js"></script>
+</body>
+
+</html>

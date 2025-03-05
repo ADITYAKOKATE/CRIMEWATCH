@@ -1,5 +1,4 @@
 # CRIMEWATCH
-# Crimewatch
 
 ## Overview
 Crimewatch is a web-based platform designed to provide users with real-time crime reports, safety alerts, and crime statistics for their local areas. The platform aims to enhance public awareness and security by leveraging data visualization, user reports, and official crime data sources.
